@@ -3,8 +3,9 @@ const app=express();
 const bodyParser=require('body-parser');
 const morgan=require('morgan');
 const mongoose=require('mongoose');
-const productRouter=require('./routes/product.js');
+const productRouter=require('./routes/products.js');
 const categoryRouter=require('./routes/categories.js');
+const userRouter=require('./routes/users.js')
 const cors=require('cors');
 
 app.use(cors());
@@ -24,6 +25,7 @@ mongoose.connect('mongodb+srv://bijuarjun45:jwvfwjvvwu627jv@cluster0.a0ys3.mongo
 
 app.use('/api/v1/products',productRouter)
 app.use('/api/v1/categories',categoryRouter)
+app.use('/api/v1/users',userRouter)
 
 
 app.listen(3000,()=>{
