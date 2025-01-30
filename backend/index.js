@@ -3,8 +3,12 @@ const app=express();
 const bodyParser=require('body-parser');
 const morgan=require('morgan');
 const mongoose=require('mongoose');
-const Product=require('./models/Products.js')
+const productRouter=require('./routes/product.js');
+const categoryRouter=require('./routes/categories.js');
+const cors=require('cors');
 
+app.use(cors());
+app.options('*',cors());
 
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
@@ -18,17 +22,9 @@ mongoose.connect('mongodb+srv://bijuarjun45:jwvfwjvvwu627jv@cluster0.a0ys3.mongo
     
 })
 
-app.get('/api/v1/test',(req,res)=>{
-    res.send("Hello World")
-})
+app.use('/api/v1/products',productRouter)
+app.use('/api/v1/categories',categoryRouter)
 
-app.post('/api/v1/name',(req,res)=>{
-    const data=req.body
-    const product=new Product(data)
-    product.save()
-    console.log(data);
-    res.send("Post request revieved")
-})
 
 app.listen(3000,()=>{
     console.log("server listening on port 3000");
