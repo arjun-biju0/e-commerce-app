@@ -8,6 +8,7 @@ const categoryRouter=require('./routes/categories.js');
 const userRouter=require('./routes/users.js')
 const cors=require('cors');
 const authJwt=require('./helpers/jwt.js')
+const errorHandler=require('./helpers/error-handler.js')
 
 app.use(cors());
 app.options('*',cors());
@@ -26,6 +27,7 @@ mongoose.connect('mongodb+srv://bijuarjun45:jwvfwjvvwu627jv@cluster0.a0ys3.mongo
 })
 
 app.use(authJwt())
+app.use(errorHandler)
 app.use('/api/v1/products',productRouter)
 app.use('/api/v1/categories',categoryRouter)
 app.use('/api/v1/users',userRouter)

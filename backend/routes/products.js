@@ -28,7 +28,9 @@ router.post('/',async (req,res)=>{
 
 router.get('/get/featured/:count',async (req,res)=>{
     const count=req.params.count? req.params.count:0;
-    const featuresProducts= await Product.find({isFeatured:true}).limit(+count);
+    const featuresProducts= await Product.find({})
+    console.log(featuresProducts);
+    
     if(!featuresProducts){
         return res.status(500).json({success:false})
     }
