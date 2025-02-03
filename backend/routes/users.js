@@ -49,7 +49,7 @@ router.post('/login',async (req,res)=>{
     
 })
 
-router.post('/',async(req,res)=>{
+router.post('/register',async(req,res)=>{
     const data=req.body;
     const hashPassword=await bcrypt.hash(req.body.password,10);
     try {
