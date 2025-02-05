@@ -49,6 +49,19 @@ router.post('/login',async (req,res)=>{
     
 })
 
+router.delete('/:id',async (req,res)=>{
+    const result =await User.findByIdAndDelete(req.params.id)
+    if(result){
+        return res.status(200).json({
+            success: true,
+            message:"User deleted successfully"
+        })
+    }
+    return res.status(404).json({success:false, message:"User not found"})
+    
+    
+})
+
 router.post('/register',async(req,res)=>{
     const data=req.body;
     const hashPassword=await bcrypt.hash(req.body.password,10);
@@ -73,6 +86,16 @@ router.post('/register',async(req,res)=>{
         console.error(error);
         res.status(500).json({success:false,error:error.message})
     }
+})
+
+router.get('/get/count',async (req,res)=>{
+    const userCount=await User.countDocuments();
+    // console.log(userCount);
+    if(!userCount){
+        return res.status(500).json({success:false})
+    }
+    res.status(200).json({userCount})
+    
 })
 
 module.exports=router;
