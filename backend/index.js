@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
 
-mongoose.connect('mongodb+srv://bijuarjun45:jwvfwjvvwu627jv@cluster0.a0ys3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("mongodb connected");
     
