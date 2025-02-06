@@ -6,6 +6,7 @@ const mongoose=require('mongoose');
 const productRouter=require('./routes/products.js');
 const categoryRouter=require('./routes/categories.js');
 const userRouter=require('./routes/users.js')
+const orderRouter=require('./routes/orders.js')
 const cors=require('cors');
 const authJwt=require('./helpers/jwt.js')
 const errorHandler=require('./helpers/error-handler.js')
@@ -31,6 +32,7 @@ app.use(errorHandler)
 app.use('/api/v1/products',productRouter)
 app.use('/api/v1/categories',categoryRouter)
 app.use('/api/v1/users',userRouter)
+app.use('/api/v1/orders',orderRouter)
 
 
 app.listen(3000,()=>{
